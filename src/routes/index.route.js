@@ -11,6 +11,7 @@
 const express = require('express');
 const cars = require('./cars.route');
 const accounts = require('./accounts.route');
+const pushNotification = require('./pushNotification.route');
 const swagger = require('./swagger.route');
 
 const router = express.Router();
