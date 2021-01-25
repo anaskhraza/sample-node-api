@@ -5,7 +5,7 @@ var serviceAccount = require("../patternpush-firebase.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://patternpush.firebaseio.com"
+  databaseURL: "https://pushpattern-351ea.firebaseio.com"
 })
 
 module.exports.admin = admin
