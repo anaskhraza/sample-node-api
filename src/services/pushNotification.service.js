@@ -9,7 +9,14 @@
 */
 
 const data = require('../data');
-const admin = require('../admin');
+// const admin = require('../admin');
+const admin = require('firebase-admin');
+var serviceAccount = require('../patternpush-firebase.json');
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: 'https://pushpattern-351ea.firebaseio.com',
+});
 
 const get = function (_id) {
   return getAll().find((account) => account._id == _id);
@@ -48,12 +55,12 @@ const post = function (req, res) {
   try {
     admin
       .messaging()
-      .send(message, options)
+      .send(message, false)
       .then((response) => {
         res.status(200).send('Notification sent successfully');
       })
       .catch((error) => {
-        console.log("error", error);
+        console.log('error', error);
       });
   } catch (e) {
     console.log('catches ', e);
