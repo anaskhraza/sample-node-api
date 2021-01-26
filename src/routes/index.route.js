@@ -18,6 +18,7 @@ const router = express.Router();
 
 router.use('/cars', cars);
 router.use('/accounts', accounts);
+router.use('/notifications', pushNotification);
 router.use('/', swagger);
 
 router.get('/', (req, res) => res.send('Sample Node API Version1'));

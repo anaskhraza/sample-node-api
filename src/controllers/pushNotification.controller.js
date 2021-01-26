@@ -11,9 +11,9 @@
 const pushNotificationService = require('../services/pushNotification.service');
 
 const post = function (req, res) {
-  console.log('req', req);
+  // console.log('req', req);
   pushNotificationService.post(req, res);
-  console.log('res', res);
+  // console.log('res', res);
 };
 
 const get = function (req, res) {

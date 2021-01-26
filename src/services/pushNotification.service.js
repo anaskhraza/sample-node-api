@@ -25,12 +25,12 @@ const notification_options = {
 };
 
 const post = function (req, res) {
-  console.log('params', req);
-  const registrationToken = req.body.registrationToken;
-  const message = req.body.message;
+  // console.log('params', req);
+  // const registrationToken = req.body.registrationToken;
+  // const message = req.body.message;
   const options = notification_options;
 
-  var registrationToken = 'YOUR_REGISTRATION_TOKEN';
+  var registrationToken = '';
 
   var message = {
     notification: {
@@ -53,11 +53,12 @@ const post = function (req, res) {
         res.status(200).send('Notification sent successfully');
       })
       .catch((error) => {
-        console.log(error);
+        console.log("error", error);
       });
   } catch (e) {
     console.log('catches ', e);
   }
+  // res.send('Done');
 };
 
 module.exports = {
