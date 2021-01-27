@@ -12,11 +12,24 @@ const data = require('../data');
 // const admin = require('../admin');
 const admin = require('firebase-admin');
 var serviceAccount = require('../patternpush-firebase.json');
+const TAFFY = require('taffy');
 
+const friends = TAFFY([
+  {
+    id: 1,
+  },
+  {
+    id: 2,
+  },
+  {
+    id: 3,
+  },
+]);
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: 'https://pushpattern-351ea.firebaseio.com',
 });
+console.log(friends().select('id'));
 
 const get = function (_id) {
   return getAll().find((account) => account._id == _id);
