@@ -11,13 +11,13 @@
 const data = require('../data');
 // const admin = require('../admin');
 const admin = require('firebase-admin');
-// var serviceAccount = require('../patternpush-firebase.json');
+var serviceAccount = require('../patternpush-firebase.json');
 // const TAFFY = require('taffy');
 
-// admin.initializeApp({
-//   credential: admin.credential.cert(serviceAccount),
-//   databaseURL: 'https://pushpattern-351ea.firebaseio.com',
-// });\\
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: 'https://pushpattern-351ea.firebaseio.com',
+});
 
 const saveDataToLocalStorage = (data) => {
   var a = [];
@@ -26,9 +26,11 @@ const saveDataToLocalStorage = (data) => {
   // Push the new data (whether it be an object or anything else) onto the array
   a.push(data);
   // Alert the array value
-  alert(a); // Should be something like [Object array]
+  // alert(a); // Should be something like [Object array]
   // Re-serialize the array back into a string and store it in localStorage
   localStorage.setItem('session', JSON.stringify(a));
+
+  return true;
 };
 
 const getDataToLocalStorage = (data) => {
@@ -146,9 +148,11 @@ const registerDevice = (req, res) => {
     const request = req.params;
     const parseRequest = JSON.parse(request);
 
-    saveDataToLocalStorage(parseRequest);
+    const response = saveDataToLocalStorage(parseRequest);
+    res.status(200).send(response);
   } catch (e) {
     console.log('catches ', e);
+    res.status(200).send(false);
   }
 };
 
@@ -156,4 +160,5 @@ module.exports = {
   get,
   getAll,
   post,
+  registerDevice,
 };

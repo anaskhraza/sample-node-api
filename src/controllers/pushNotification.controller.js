@@ -20,7 +20,12 @@ const get = function (req, res) {
   res.send('Cannot get');
 };
 
+const registerDevice = function (req, res) {
+  pushNotificationService.registerDevice(req);
+};
+
 module.exports = {
   post,
   get,
+  registerDevice,
 };

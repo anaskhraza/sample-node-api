@@ -16,5 +16,6 @@ const pushNotification = require('../controllers/pushNotification.controller');
 router.route('/').get(pushNotification.get);
 
 router.route('/notification').post(pushNotification.post);
+router.route('/register').post(pushNotification.registerDevice);
 
 module.exports = router;
